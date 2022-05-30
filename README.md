@@ -9,7 +9,7 @@ The script will:
 - Train either a logReg og NN model:
     - The user can specify if the model should try to predict age ('40 or over' / '39' or under) or race ('Black', 'Hispanic' or 'White') 
 - Print a classification report to show how good the classifier is.
-- Save a learning curve plot to visualise the cross-validation of the model.
+- Save a learning curve plot to visualize the cross-validation of the model.
 - If specified the script can also save the model for later use.
 
 ## ------ METHOD ------
