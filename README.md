@@ -28,7 +28,7 @@ If webscraped by the user, the following in the column "Last Statement" needs to
 
 ## ------ REPO STRUCTURE ------
 "src" FOLDER:
-- This folder contains the .py script.
+- This folder contains the .py script and .rmd webscraping script
 
 "in" FOLDER:
 - This is where the data used in the script should be placed. Ie. where the the "last_statement_texas.csv" file should be placed.
