@@ -5,7 +5,7 @@ This repository contains a script that trains a LogReg or simple NN model to pre
 The script will:
 - Load the relevant data.
     - If the user has chosen to use the text statements, the script will also balance the data.
-    - If the user has chosen to use sentiment, the model will use the huggingface model "emotion-english-distilroberta-base" to predict one of 7 different emotions.
+    - If the user has chosen to use sentiment, the model will use the huggingface model "emotion-english-distilroberta-base" to predict one of 7 different emotions from the statements.
 - Train either a logReg og NN model:
     - The user can specify if the model should try to predict age ('40 or over' / '39' or under) or race ('Black', 'Hispanic' or 'White') 
 - Print a classification report to show how good the classifier is.
