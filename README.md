@@ -46,7 +46,7 @@ Argument         | What it specifies / does
 ---------------- | -------------------------
 "-l" / "--label" | What label you want to use. 'Race' or 'Age'.
 "-i" / "--input_data" | What you want to use for the classification. 'Statement' or 'Sentiment'.
-"-c" / "--class_type" | What type of classification you want to use. Logistical regression ('LogReg') or a simple neural network ('NN').
+"-c" / "--class_type" | What type of classification you want to use. Logistic regression ('LogReg') or a simple neural network ('NN').
 
 **Optional**
 Argument         | What it specifies / does
