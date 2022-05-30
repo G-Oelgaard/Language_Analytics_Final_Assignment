@@ -12,6 +12,11 @@ The script will:
 - Save a learning curve plot to visualise the cross-validation of the model.
 - If specified the script can also save the model for later use.
 
+## ------ METHOD ------
+While this script uses both logistical regression and simple neural networks, it was originally intended to use CNN. However, after running some preliminary tests, it rapidly became apperant that it was both a slower and score-wise worse approach. It was therefor changed to its current format with the user designating what model to use. In whole, this model was created with the intention of giving the user a wide possibility of choices. Almost all, except the variables in the vectorizer, can be defined when starting the model. The reasoning for not being able to change the vectorizer, is because the variables are already set to the parameters that gave the best scores in training. 
+
+A long time was also devoted to trying a figure out a way to balance the dataset when using sentiment scores. But due to built in limitations with the clf.balance function, no way was found. It most likely could have been possible with a for-loop counting both index and lables until a certain requirement was met. But i could not see a way where this would not have led to the creating of the exact same balanced dataset each time. In other words: i could not see how this could be done without permanently excluding a large part of the dataset.
+
 ## ------ DATA ------
 The data is a list of last statements made by deathrow inmates in Texas from 1982-2022. 
 
@@ -49,4 +54,10 @@ Argument         | What it specifies / does
 "-s" / "--save_model" | What you want the model to be saved as. Do **not** give af file extension! If no argument is given, the model won't save.
 
 ## ------ RESULTS ------
-The scripts achieve what they set out to do. The classification reports also show a clear improvement when using a CNN model compared to a LogReg model. As the time it took to run the CNN model was not much longer than the LogReg model, it would in almost all cases be better to use that model for relevant predictions. 
+The scripts achieve what they set out to do. However, there are glaring problems. In short: It is a model that tries to predict something that seemingly cannot be predicted! This means that models are not actually that useful. 
+
+Ex. the classification scores for age and statement are around 0.5. Seeing as there are only two choices, the models has not better scores that if it classified them by flipping a coin. The same can be seen when using race. 
+
+Another flaw of the model / script is it's inability to balance the dataset when using sentiment. This means the model has way to many "black" and "white" inmates compared to hispanic, which in turn means the model gives scores around 0 when predicting hispanic. This is both due to a flaw in the script, but again also points towards the fact that you cannot predict age or race from last words.
+
+In other words: DO NOT TRY TO USE THIS MODEL TO ACTUALLY PREDICT RACE OR AGE FROM DEATH ROW INMATES LAST STATEMENTS!
