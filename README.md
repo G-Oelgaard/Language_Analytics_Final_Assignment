@@ -40,7 +40,7 @@ If webscraped by the user, the following in the column "Last Statement" needs to
 - This folder should include all utility scripts used by the main script.
 
 ## ------ SCRIPT USAGE ------
-### Arguments for CNN_Class.py script:
+### Arguments:
 **Required**
 Argument         | What it specifies / does
 ---------------- | -------------------------
