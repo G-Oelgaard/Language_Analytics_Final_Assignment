@@ -1,0 +1,117 @@
+---
+title: "Death row inmates"
+author: "Gustav Ølgaard"
+date: "5/9/2022"
+output: html_document
+---
+
+```{r libraries, warning=FALSE, message=FALSE}
+library(rvest)
+library(dplyr)
+library(tidyr)
+library(stringr)
+library(janitor)
+```
+
+```{r url}
+url <- "http://www.tdcj.texas.gov/death_row/dr_executed_offenders.html"
+# scrape the website
+url_html <- read_html(url)
+```
+
+```{r scrape-table}
+whole_table <- url_html %>% 
+ html_table(fill=T)  #str(whole_table) turns out to be a list
+new_table <- (whole_table)[[1]] #This shows the first list in the data frame
+```
+
+```{r}
+last_statement <- url_html %>%
+  html_nodes("table tr") %>%
+  html_nodes(xpath = "//td[3]") %>%  ## xpath
+  html_nodes("a") %>%
+  html_attr("href")
+
+new_table$last_statement_link <- last_statement  ## add Data links column
+```
+
+
+```{r}
+scrape_last_statement <- function(website){
+	url <- read_html(website)
+	last_statement_text <- url %>% 
+ 			html_nodes("p") %>%
+ 			html_text()  # result is a text
+  last_statement_text[6]
+ }
+```
+
+```{r}
+text_statement <- scrape_last_statement("https://www.tdcj.texas.gov/death_row/dr_info/buntioncarllast.html")
+text_statement %>% 
+	head()
+```
+
+```{r}
+new_table$last_statement_link = sub("/death_row/", "", as.character(new_table$last_statement_link))
+```
+
+
+
+```{r loop}
+mastertable=NULL  # we need to create an empty container for results
+
+for (link in new_table$last_statement_link){  # here we create a loop to iterate over the years
+	print(link)
+	url <- "https://www.tdcj.texas.gov/death_row/"
+	website <- paste0(url,link)  # here we bind the year to the website to form the URL
+	statement_table <- scrape_last_statement(website) # here we apply the function
+	mastertable <- rbind(mastertable, statement_table) # we add the scraped results from the given year to our master dataset
+	}
+head(mastertable)
+```
+
+```{r}
+mastertable <- as.data.frame(mastertable)
+```
+
+```{r}
+new_table[2:3] <- NULL
+```
+
+```{r}
+mastertable_fixed <- mastertable
+
+mastertable_fixed$Execution <- 574:1
+```
+
+```{r}
+last_statement_table <- left_join(new_table, mastertable_fixed)
+```
+```{r}
+last_statement_table <- rename(last_statement_table, "Last Statement" = "V1")
+```
+
+```{r}
+# Triming leading whitespaces
+last_statement_table$'Last Statement' <- str_trim(last_statement_table$'Last Statement')
+```
+
+```{r}
+install.packages("naniar")
+library("naniar")
+```
+
+```{r}
+na_strings <- c("No statement was made.", "None", "Spoken: No.", "No statement given.", "None.", "This inmate declined to make a last statement.", "No, I have no final statement.", "No", "No last statement.")
+
+last_statement_table <- last_statement_table %>% 
+  replace_with_na_all(condition = ~.x %in% na_strings)
+```
+
+
+```{r}
+library(tidyverse)
+write_csv2(last_statement_table,"last_statement_texas.csv")
+```
+
