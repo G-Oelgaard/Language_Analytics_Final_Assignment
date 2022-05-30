@@ -24,7 +24,7 @@ The data can be found here: https://www.tdcj.texas.gov/death_row/dr_executed_off
 
 However, as the data cannot be downloaded from the website, a webscraping script is needed. This can be done by the user or by using the R-markdown script "Webscraping_statements.rmd" created by myself.
 
-If webscraped by the user, the following in the column "Last Statement" need to be transformed to "NA": "No statement was made", "None", "Spoken: No", "No statement given", "This inmate declined to make a last statement", "No, i have no final statement", "No" and "No last statement".
+If webscraped by the user, the following in the column "Last Statement" needs to be transformed to "NA": "No statement was made", "None", "Spoken: No", "No statement given", "This inmate declined to make a last statement", "No, i have no final statement", "No" and "No last statement".
 
 ## ------ REPO STRUCTURE ------
 "src" FOLDER:
