@@ -51,7 +51,7 @@ Argument         | What it specifies / does
 **Optional**
 Argument         | What it specifies / does
 ---------------- | -------------------------
-"-s" / "--save_model" | What you want the model to be saved as. Do **not** give af file extension! If no argument is given, the model won't save.
+"-s" / "--save_model" | What you want the model to be saved as. Do **not** give a file extension! If no argument is given, the model won't save.
 
 ## ------ RESULTS ------
 The scripts achieve what they set out to do. However, there are glaring problems. In short: It is a model that tries to predict something that seemingly cannot be predicted! This means that models are not actually that useful. 
