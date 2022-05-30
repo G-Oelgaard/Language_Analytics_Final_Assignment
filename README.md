@@ -61,3 +61,8 @@ Ex. the classification scores for age and statement are around 0.5. Seeing as th
 Another flaw of the model / script is it's inability to balance the dataset when using sentiment. This means the model has way to many "black" and "white" inmates compared to hispanic, which in turn means the model gives scores around 0 when predicting hispanic. This is both due to a flaw in the script, but again also points towards the fact that you cannot predict age or race from last words.
 
 In other words: DO NOT TRY TO USE THIS MODEL TO ACTUALLY PREDICT RACE OR AGE FROM DEATH ROW INMATES LAST STATEMENTS!
+
+## ------ REQUIREMENTS ------
+The scripts needs pytorch to run.
+
+Therefore you need to run "pip install torch" in the terminal before running the script.
